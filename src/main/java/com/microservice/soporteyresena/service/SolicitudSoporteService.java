@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.microservice.soporteyresena.model.ClienteDTO;
 import com.microservice.soporteyresena.model.EstadoSolicitud;
+import com.microservice.soporteyresena.model.ProductoDTO;
 import com.microservice.soporteyresena.model.SolicitudSoporte;
 import com.microservice.soporteyresena.repository.SolicitudSoporteRepository;
 
@@ -17,12 +20,30 @@ import jakarta.transaction.Transactional;
 public class SolicitudSoporteService {
     @Autowired
     private SolicitudSoporteRepository solicitudSoporteRepository;
+    @Autowired
+    private RestTemplate restTemplate;
 
     public List<SolicitudSoporte> listar() {
         return solicitudSoporteRepository.findAll();
     }
 
     public SolicitudSoporte crearSolicitud(SolicitudSoporte solicitud) {
+
+        String urlCliente ="http://localhost:8081/api/clientes/" + solicitud.getIdCliente();
+
+        ClienteDTO cliente = restTemplate.getForObject(urlCliente, ClienteDTO.class);
+
+        if (cliente == null) {
+            throw new RuntimeException("El cliente no existe");
+        }
+
+        String urlProducto = "http://localhost:8082/api/productos/" + solicitud.getIdProducto();
+
+        ProductoDTO producto = restTemplate.getForObject( urlProducto, ProductoDTO.class);
+
+        if (producto == null) {
+            throw new RuntimeException("El producto no existe");
+        }
 
         solicitud.setEstado(EstadoSolicitud.PENDIENTE);
         solicitud.setFechaSolicitud(LocalDate.now());
