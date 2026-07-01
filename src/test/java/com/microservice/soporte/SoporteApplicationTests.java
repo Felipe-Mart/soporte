@@ -1,10 +1,10 @@
-package com.microservice.soporteyresena;
+package com.microservice.soporte;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SoporteyresenaApplicationTests {
+class SoporteApplicationTests {
 
 	@Test
 	void contextLoads() {

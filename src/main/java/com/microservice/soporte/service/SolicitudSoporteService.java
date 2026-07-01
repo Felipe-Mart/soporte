@@ -31,16 +31,16 @@ public class SolicitudSoporteService {
     private RestTemplate restTemplate;
 
     private static final String URL_CLIENTES =
-            "http://localhost:8081/api/clientes/buscar";
+            "http://localhost:8081/api/clientes/buscar/";
 
     private static final String URL_EMPLEADOS =
-            "http://localhost:8081/api/empleados/buscar";
+            "http://localhost:8081/api/empleados/buscar/";
 
     private static final String URL_PRODUCTOS =
-            "http://localhost:8086/api/productos/buscar";
+            "http://localhost:8086/api/productos/buscar/";
 
     private static final String URL_SUCURSALES =
-            "http://localhost:8082/api/sucursales/buscar";
+            "http://localhost:8082/api/sucursales/buscar/";
 
     public SolicitudSoporte crearSolicitud(SolicitudSoporte solicitud) {
 
