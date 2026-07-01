@@ -254,8 +254,7 @@ class SolicitudSoporteServiceTest {
         empleado.setNombre("Pedro");
 
         SucursalDTO sucursal = new SucursalDTO();
-        sucursal.setNombre("Sucursal Centro");
-        sucursal.setDireccion("Av. Siempre Viva");
+        sucursal.setCiudad("Sucursal Centro");
 
         when(solicitudRepository.findById(1L))
                 .thenReturn(Optional.of(solicitud));

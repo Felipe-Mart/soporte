@@ -147,9 +147,9 @@ public class SolicitudSoporteService {
         System.out.println(
                 "Empleado " + empleado.getNombre()
                 + " asignó la sucursal "
-                + sucursal.getNombre()
+                + sucursal.getIdSucursal()
                 + " ubicada en "
-                + sucursal.getDireccion());
+                + sucursal.getCiudad());
 
         return solicitudRepository.save(solicitud);
     }
